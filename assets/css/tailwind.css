@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#app {
+  @apply m-0 h-full;
+  font-family: "Tilt Prism", cursive;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+h2 {
+  @apply text-4xl sm:text-5xl md:text-7xl font-semibold;
+}
+h3 {
+  @apply text-2xl font-bold;
+}
+p {
+  @apply text-base sm:text-xl;
+}
