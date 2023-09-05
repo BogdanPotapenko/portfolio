@@ -38,17 +38,17 @@
             >
               <picture class="w-full h-full">
                 <source
-                  :srcset="`/portfolio${portfolio.img}Phone.jpg`"
+                  :srcset="`/portfolio/portfolio${portfolio.img}Phone.jpg`"
                   type="image/jpeg"
                   media="(max-width:639px)"
                 />
                 <source
-                  :srcset="`/portfolio${portfolio.img}Ipad.jpg`"
+                  :srcset="`/portfolio/portfolio${portfolio.img}Ipad.jpg`"
                   type="image/jpeg"
                   media="(max-width:1023px)"
                 />
                 <img
-                  :src="`/portfolio${portfolio.img}.jpg`"
+                  :src="`/portfolio/portfolio${portfolio.img}.jpg`"
                   class="rounded-xl w-full h-full object-cover object-top"
                 />
               </picture>

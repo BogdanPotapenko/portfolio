@@ -50,7 +50,7 @@
                 ${degree ? 'animation-play-state: paused;' : ''}`"
             >
               <img
-                :src="`/skills${skill.img}`"
+                :src="`/portfolio/skills${skill.img}`"
                 alt=""
                 class="w-[calc(30px+(100_-_30)*((100vw-390px)/(1024_-_390)))] max-w-[100px] h-[calc(30px+(100_-_30)*((100vw-390px)/(1024-390)))] max-h-[100px] mx-auto"
               />
