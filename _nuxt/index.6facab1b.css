@@ -1,0 +1,1 @@
+@keyframes one{0%{transform:rotate(1turn);transform:var(--onefrom,rotate(1turn))}to{transform:rotate(0);transform:var(--oneto,rotate(0deg))}}@keyframes three{0%{transform:rotate(0);transform:var(--threeto,rotate(0deg))}to{transform:rotate(1turn);transform:var(--threefrom,rotate(1turn))}}@keyframes scale{0%{transform:scale(1)}50%{transform:scale(.65)}to{transform:scale(1)}}
