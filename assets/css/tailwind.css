@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,8 +8,7 @@ html,
 body,
 #app {
   @apply m-0 h-full;
-  font-family: "Tilt Prism", cursive;
-
+  font-family: "Balsamiq Sans";
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
