@@ -1,12 +1,17 @@
 <template>
   <section id="about" class="pt-28 pb-12 md:py-12 px-15">
     <div
-      class="flip-card max-w-5xl h-[500px] mx-auto"
+      @mouseenter="back = true"
+      @mouseleave="back = false"
+      @touchstart="back = true"
+      @touchend="back = false"
+      class="max-w-5xl h-[500px] mx-auto"
       style="perspective: 1000px"
     >
       <div
-        class="flip-card-inner relative w-full h-full text-center duration-700"
+        class="flip-card relative w-full h-full text-center duration-700"
         style="transform-style: preserve-3d"
+        :style="back ? 'transform: rotateY(180deg)' : ''"
       >
         <div
           class="absolute w-full h-full flex flex-col justify-center items-center rounded-3xl bg-primary border-4 border-solid border-secondary"
@@ -41,9 +46,6 @@
     </div>
   </section>
 </template>
-
-<style scoped>
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-</style>
+<script setup lang="ts">
+const back = ref(false);
+</script>

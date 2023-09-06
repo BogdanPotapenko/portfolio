@@ -15,10 +15,10 @@
               <nuxt-link
                 to="https://www.linkedin.com/in/богдан-потапенко-b74860221"
                 target="blank"
-                class="group p-2.5 block w-12 h-12 sm:w-15 sm:h-15 md:w-20 md:h-20 rounded-full bg-white shadow-[0 5px 4px rgba(0, 0, 0, 0.5)] duration-700 hover:bg-[#0077b5] hover:-translate-y-1"
+                class="group p-2.5 block w-12 h-12 sm:w-15 sm:h-15 md:w-20 md:h-20 rounded-full bg-[#0077b5] md:bg-white duration-700 hover:bg-[#0077b5] hover:-translate-y-1"
               >
                 <icons-linkedin
-                  class="duration-700 group-hover:fill-white p-1"
+                  class="max-md:fill-white duration-700 group-hover:fill-white p-1"
                 />
               </nuxt-link>
             </li>
@@ -26,19 +26,21 @@
               <nuxt-link
                 to="https://t.me/bogdan_potapenko"
                 target="blank"
-                class="group p-2.5 block w-12 h-12 sm:w-15 sm:h-15 md:w-20 md:h-20 rounded-full bg-white shadow-[0 5px 4px rgba(0, 0, 0, 0.5)] duration-700 hover:bg-[#0077b5] hover:-translate-y-1"
+                class="group p-2.5 block w-12 h-12 sm:w-15 sm:h-15 md:w-20 md:h-20 rounded-full bg-[#0077b5] md:bg-white duration-700 hover:bg-[#0077b5] hover:-translate-y-1"
               >
-                <icons-telegram class="duration-700 group-hover:fill-white" />
+                <icons-telegram
+                  class="max-md:fill-white duration-700 group-hover:fill-white"
+                />
               </nuxt-link>
             </li>
             <li class="">
               <nuxt-link
                 to="https://www.instagram.com/bohdanchik_"
                 target="blank"
-                class="group p-2.5 block w-12 h-12 sm:w-15 sm:h-15 md:w-20 md:h-20 rounded-full bg-white shadow-[0 5px 4px rgba(0, 0, 0, 0.5)] duration-700 hover:bg-[#E4405F] hover:-translate-y-1"
+                class="group p-2.5 block w-12 h-12 sm:w-15 sm:h-15 md:w-20 md:h-20 rounded-full bg-[#E4405F] md:bg-white duration-700 hover:bg-[#E4405F] hover:-translate-y-1"
               >
                 <icons-instagram
-                  class="duration-700 group-hover:fill-white p-1"
+                  class="max-md:fill-white duration-700 group-hover:fill-white p-1"
                 />
               </nuxt-link>
             </li>
@@ -46,10 +48,10 @@
               <nuxt-link
                 to="https://github.com/BogdanPotapenko"
                 target="blank"
-                class="group p-2.5 block w-12 h-12 sm:w-15 sm:h-15 md:w-20 md:h-20 rounded-full bg-white shadow-[0 5px 4px rgba(0, 0, 0, 0.5)] duration-700 hover:bg-[#2c2c2c] hover:-translate-y-1"
+                class="group p-2.5 block w-12 h-12 sm:w-15 sm:h-15 md:w-20 md:h-20 rounded-full bg-[#2c2c2c] md:bg-white duration-700 hover:bg-[#2c2c2c] hover:-translate-y-1"
               >
                 <icons-git-hub
-                  class="duration-700 group-hover:fill-white p-1"
+                  class="max-md:fill-white duration-700 group-hover:fill-white p-1"
                 />
               </nuxt-link>
             </li>

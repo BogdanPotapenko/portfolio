@@ -5,7 +5,7 @@ module.exports = {
       secondary: "#9370DB",
       white: "#FFFFFF",
       black: "#000000",
-      grey: "#C0C0C0",
+      gray: "#C0C0C0",
     },
     extend: {
       width: {

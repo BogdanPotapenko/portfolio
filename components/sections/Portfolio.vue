@@ -7,16 +7,14 @@
       >
         <button
           @click="deg -= 360 / portfolios.length"
-          class="peer w-9 h-14 bg-[url('/portfolio/left.svg')] bg-center bg-no-repeat"
+          class="btn w-9 h-14 bg-[url('/portfolio/left.svg')] bg-center bg-no-repeat"
         ></button>
         <button
           @click="deg += 360 / portfolios.length"
-          class="peer w-9 h-14 bg-[url('/portfolio/right.svg')] bg-center bg-no-repeat order-last"
+          class="btn w-9 h-14 bg-[url('/portfolio/right.svg')] bg-center bg-no-repeat order-last"
         ></button>
 
-        <div
-          class="relative w-full h-0 pb-[150%] sm:pb-[98%] lg:pb-[60%] peer-active:animate-none peer-focus:animate-[scale_0.7s_ease-out]"
-        >
+        <div class="anim relative w-full h-0 pb-[150%] sm:pb-[98%] lg:pb-[60%]">
           <div
             v-for="(portfolio, index) in portfolios"
             :key="index"
@@ -97,35 +95,40 @@ onMounted(() => {
 
   translate.value = document.body.clientWidth;
 
-  document.querySelectorAll(".dot")[0].classList.add("active");
+  document.querySelectorAll<HTMLDivElement>(".dot")[0].style.background =
+    "#c0c0c0";
 });
 
 watch(deg, () => {
-  document.querySelectorAll(".dot").forEach((el) => {
-    if (el.classList.contains("active")) {
-      el.classList.remove("active");
-    }
+  document.querySelectorAll<HTMLDivElement>(".dot").forEach((el) => {
+    el.style.background = "black";
 
     if (
       (deg.value / (360 / portfolios.value.length)) % portfolios.value.length >=
       0
     ) {
-      document
-        .querySelectorAll(".dot")
-        [
-          (deg.value / (360 / portfolios.value.length)) %
-            portfolios.value.length
-        ].classList.add("active");
+      document.querySelectorAll<HTMLDivElement>(".dot")[
+        (deg.value / (360 / portfolios.value.length)) % portfolios.value.length
+      ].style.background = "#c0c0c0";
     } else {
-      document
-        .querySelectorAll(".dot")
-        [
-          ((deg.value / (360 / portfolios.value.length)) %
-            portfolios.value.length) +
-            portfolios.value.length
-        ].classList.add("active");
+      document.querySelectorAll<HTMLDivElement>(".dot")[
+        ((deg.value / (360 / portfolios.value.length)) %
+          portfolios.value.length) +
+          portfolios.value.length
+      ].style.background = "#c0c0c0";
     }
   });
+  document.querySelectorAll<HTMLButtonElement>("button").forEach((el) => {
+    el.disabled = true;
+    setTimeout(() => {
+      el.disabled = false;
+    }, 700);
+  });
+  const anim = document.querySelector<HTMLDivElement>(".anim");
+  anim!.classList.add("animate-[scale_0.7s_ease-out]");
+  setTimeout(() => {
+    anim!.classList.remove("animate-[scale_0.7s_ease-out]");
+  }, 700);
 });
 </script>
 
@@ -140,9 +143,5 @@ watch(deg, () => {
   100% {
     transform: scale(1);
   }
-}
-
-.active {
-  background-color: #c0c0c0;
 }
 </style>

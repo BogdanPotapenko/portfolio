@@ -110,7 +110,7 @@ const randomBetween = (a: number, b: number) => {
   return a + Math.random() * (b - a);
 };
 const background = () => {
-  document.querySelectorAll(".star").forEach((el) => {
+  document.querySelectorAll<HTMLDivElement>(".star").forEach((el) => {
     el.remove();
   });
   for (let i = 0; i < params.value.amount; i++) {
@@ -136,8 +136,7 @@ const background = () => {
         : "shine infinite alternate";
     star.style.animationDuration =
       randomBetween(params.value.duration.min, params.value.duration.max) + "s";
-    const background: any = document.getElementById("background");
-    background.append(star);
+    document.getElementById("background")!.append(star);
   }
 };
 
