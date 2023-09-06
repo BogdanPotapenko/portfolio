@@ -3,8 +3,7 @@
     <div
       @mouseenter="back = true"
       @mouseleave="back = false"
-      @touchstart="back = true"
-      @touchend="back = false"
+      @click="back = !back"
       class="max-w-5xl h-[500px] mx-auto"
       style="perspective: 1000px"
     >
