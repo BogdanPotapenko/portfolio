@@ -41,7 +41,6 @@
         </div>
       </div>
     </div>
-    <div class="text-white">{{ back }}</div>
   </section>
 </template>
 <script setup lang="ts">
