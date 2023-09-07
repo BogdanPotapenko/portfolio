@@ -65,6 +65,15 @@
           off="OFF"
         />
         <toggle-button
+          @switch="
+            params.amount ? (params.amount = 0) : (params.amount = 150),
+              background()
+          "
+          label="st"
+          on="ON"
+          off="OFF"
+        />
+        <toggle-button
           @switch="locale === 'en' ? (locale = 'uk') : (locale = 'en')"
           label="locale"
           on="EN"
