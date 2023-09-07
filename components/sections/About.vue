@@ -1,8 +1,6 @@
 <template>
   <section id="about" class="pt-28 pb-12 md:py-12 px-15">
     <div
-      @mouseenter="back = true"
-      @mouseleave="back = false"
       @click="back = !back"
       class="max-w-5xl h-[500px] mx-auto"
       style="perspective: 1000px"
@@ -43,6 +41,7 @@
         </div>
       </div>
     </div>
+    <div class="text-white">{{ back }}</div>
   </section>
 </template>
 <script setup lang="ts">

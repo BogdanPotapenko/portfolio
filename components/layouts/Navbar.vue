@@ -143,16 +143,16 @@ const background = () => {
 const scroll = (value: number) => {
   activeMenu.value = false;
   scrolling.value = true;
-  if (value > 50) {
-    window.scrollBy(0, 50);
+  if (value > 15) {
+    window.scrollBy(0, 15);
     setTimeout(() => {
-      scroll(value - 50);
-    }, 20);
-  } else if (value < -50) {
-    window.scrollBy(0, -50);
+      scroll(value - 15);
+    }, 0);
+  } else if (value < -15) {
+    window.scrollBy(0, -15);
     setTimeout(() => {
-      scroll(value + 50);
-    }, 20);
+      scroll(value + 15);
+    }, 0);
   } else {
     window.scrollBy(0, value);
     scrolling.value = false;
