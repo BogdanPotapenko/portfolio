@@ -11,15 +11,13 @@
     ></label>
     <span
       class="absolute top-2.5 pointer-events-none text-sm w-1/2 text-center text-primary peer-checked:text-[white]"
-      >{{ on }}</span
-    >
+    ></span>
     <span
       class="absolute top-2.5 right-0 pointer-events-none text-sm w-1/2 text-center text-white peer-checked:text-primary"
-      >{{ off }}</span
-    >
+    ></span>
   </div>
   <label class="switch">
-    <input type="checkbox" />
+    <input type="checkbox" @click="$emit('switch')" />
     <span class="slider"></span>
   </label>
 </template>

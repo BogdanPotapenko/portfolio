@@ -55,7 +55,15 @@
         </button>
       </nav>
       <div class="flex gap-3 flex-col md:flex-row mb-24 md:mb-0">
-        <toggle-button @switch="" label="star" on="" off="" />
+        <toggle-button
+          @switch="
+            params.amount ? (params.amount = 0) : (params.amount = 150),
+              background()
+          "
+          label="star"
+          on="ON"
+          off="OFF"
+        />
         <toggle-button
           @switch="locale === 'en' ? (locale = 'uk') : (locale = 'en')"
           label="locale"
