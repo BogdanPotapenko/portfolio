@@ -110,34 +110,37 @@ const randomBetween = (a: number, b: number) => {
   return a + Math.random() * (b - a);
 };
 const background = () => {
-  document.querySelectorAll<HTMLDivElement>(".star").forEach((el) => {
-    el.remove();
-  });
-  for (let i = 0; i < params.value.amount; i++) {
-    const star = document.createElement("span");
-    star.classList.add("star");
-    const size =
-      Math.round(Math.random() * 10) === 0
-        ? params.value.size.giant
-        : randomBetween(params.value.size.min, params.value.size.max);
-    star.style.width = size + "px";
-    star.style.height = size + "px";
-    star.style.position = "absolute";
-    star.style.left = randomBetween(0, 100) + "%";
-    star.style.top = randomBetween(0, 100) + "%";
-    star.style.background =
-      "radial-gradient(ellipse at center,#9370db 2%,#053f76 100%)";
-    star.style.borderRadius = "100%";
-    star.style.boxShadow = "0 0 " + size + "px " + size / 2 + "px #043668";
-    star.style.transform = "translate3d(0, 0, 200px)";
-    star.style.animation =
-      Math.round(Math.random() * 5) === 0
-        ? "move linear infinite"
-        : "shine infinite alternate";
-    star.style.animationDuration =
-      randomBetween(params.value.duration.min, params.value.duration.max) + "s";
-    document.getElementById("background")!.append(star);
-  }
+  setTimeout(() => {
+    document.querySelectorAll<HTMLDivElement>(".star").forEach((el) => {
+      el.remove();
+    });
+    for (let i = 0; i < params.value.amount; i++) {
+      const star = document.createElement("span");
+      star.classList.add("star");
+      const size =
+        Math.round(Math.random() * 10) === 0
+          ? params.value.size.giant
+          : randomBetween(params.value.size.min, params.value.size.max);
+      star.style.width = size + "px";
+      star.style.height = size + "px";
+      star.style.position = "absolute";
+      star.style.left = randomBetween(0, 100) + "%";
+      star.style.top = randomBetween(0, 100) + "%";
+      star.style.background =
+        "radial-gradient(ellipse at center,#9370db 2%,#053f76 100%)";
+      star.style.borderRadius = "100%";
+      star.style.boxShadow = "0 0 " + size + "px " + size / 2 + "px #043668";
+      star.style.transform = "translate3d(0, 0, 200px)";
+      star.style.animation =
+        Math.round(Math.random() * 5) === 0
+          ? "move linear infinite"
+          : "shine infinite alternate";
+      star.style.animationDuration =
+        randomBetween(params.value.duration.min, params.value.duration.max) +
+        "s";
+      document.getElementById("background")!.append(star);
+    }
+  }, 100);
 };
 
 const scroll = (value: number) => {
