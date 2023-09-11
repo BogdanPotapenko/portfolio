@@ -1,5 +1,5 @@
 <template>
-  <div class="flex relative">
+  <!-- <div class="flex relative">
     <input
       @click="$emit('switch')"
       class="w-0 h-0 invisible peer"
@@ -7,7 +7,7 @@
       :id="label"
     /><label
       :for="label"
-      class="relative block cursor-pointer w-20 h-10 rounded-full bg-primary after:content-[''] after:absolute after:top-5px after:left-5px after:w-7.5 after:h-7.5 after:bg-white after:rounded-full after:duration-300 active:after:w-11 peer-checked:after:left-full peer-checked:after:-ml-5px peer-checked:after:-translate-x-full"
+      class=" after:content-[''] after:absolute after:top-5px after:left-5px after:w-7.5 after:h-7.5 after:bg-white after:rounded-full after:duration-300 active:after:w-11 peer-checked:after:left-full peer-checked:after:-ml-5px peer-checked:after:-translate-x-full"
     ></label>
     <span
       class="absolute top-2.5 pointer-events-none text-sm w-1/2 text-center text-primary peer-checked:text-[white]"
@@ -17,19 +17,25 @@
       class="absolute top-2.5 right-0 pointer-events-none text-sm w-1/2 text-center text-white peer-checked:text-primary"
       >{{ off }}</span
     >
-  </div>
-  <label class="switch">
-    <input type="checkbox" @click="$emit('switch')" class="peer" />
-    <span class="slider">
-      <span
-        class="absolute top-2.5 z-10 pointer-events-none text-sm w-1/2 text-center text-primary peer-checked:text-[white]"
+  </div> -->
+  <label class="switch relative">
+    <input type="checkbox" @click="$emit('switch')" class="peer hidden" />
+    <span
+      class="slider relative inline-block cursor-pointer w-20 h-10 rounded-full bg-primary 
+      after:content-[''] after:absolute after:inline-block after:top-[5px] after:w-7.5 after:h-7.5 
+      after:bg-white after:rounded-full after:translate-x-[5px] after:duration-300 after:ease-in-out 
+      peer-checked:after:translate-x-[45px] peer-active:after:w-[45px]  
+      "
+    >
+    </span>
+    <span
+        class="absolute top-2.5 z-10 left-0 pointer-events-none text-sm w-1/2 text-center text-primary peer-checked:text-white"
         >{{ on }}</span
       >
       <span
-        class="absolute top-2.5 z-10 right-0 pointer-events-none text-sm w-1/2 text-center text-primary"
+        class="absolute top-2.5 z-10 right-0 pointer-events-none text-sm w-1/2 text-center text-white peer-checked:text-primary"
         >{{ off }}</span
       >
-    </span>
   </label>
 </template>
 
@@ -42,67 +48,7 @@ defineProps({
 </script>
 
 <style>
-.switch {
-  --button-width: 80px;
-  --button-height: 40px;
-  --toggle-diameter: 30px;
-  --button-toggle-offset: calc(
-    (var(--button-height) - var(--toggle-diameter)) / 2
-  );
-  --toggle-shadow-offset: 10px;
-  --toggle-wider: 2em;
-  --color-grey: #cccccc;
-  --color-green: #4296f4;
-}
-
-.slider {
-  display: inline-block;
-  width: var(--button-width);
-  height: var(--button-height);
-  background-color: var(--color-grey);
-  border-radius: calc(var(--button-height) / 2);
-  position: relative;
-  transition: 0.3s all ease-in-out;
-}
-
-.slider::after {
-  content: "";
-  display: inline-block;
-  width: var(--toggle-diameter);
-  height: var(--toggle-diameter);
-  background-color: #fff;
-  border-radius: calc(var(--toggle-diameter) / 2);
-  position: absolute;
-  top: var(--button-toggle-offset);
-  transform: translateX(var(--button-toggle-offset));
-  box-shadow: var(--toggle-shadow-offset) 0
-    calc(var(--toggle-shadow-offset) * 4) rgba(0, 0, 0, 0.1);
-  transition: 0.3s all ease-in-out;
-}
-
-.switch input[type="checkbox"]:checked + .slider::after {
-  transform: translateX(
-    calc(
-      var(--button-width) - var(--toggle-diameter) - var(--button-toggle-offset)
-    )
-  );
-  box-shadow: calc(var(--toggle-shadow-offset) * -1) 0
-    calc(var(--toggle-shadow-offset) * 4) rgba(0, 0, 0, 0.1);
-}
-
-.switch input[type="checkbox"] {
-  display: none;
-}
-
-.switch input[type="checkbox"]:active + .slider::after {
-  width: var(--toggle-wider);
-}
-
 .switch input[type="checkbox"]:checked:active + .slider::after {
-  transform: translateX(
-    calc(
-      var(--button-width) - var(--toggle-wider) - var(--button-toggle-offset)
-    )
-  );
+  transform: translateX(30px);
 }
 </style>
