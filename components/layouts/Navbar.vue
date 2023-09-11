@@ -57,7 +57,7 @@
       <div class="flex gap-3 flex-col md:flex-row mb-24 md:mb-0">
         <toggle-button
           @switch="
-            params.amount ? (params.amount = 0) : (params.amount = 150),
+            params.amount ? (params.amount = 0) : (params.amount = 100),
               background()
           "
           label="star"
@@ -78,7 +78,7 @@
 const { locale } = useI18n();
 
 const params = ref({
-  amount: 150,
+  amount: 100,
   size: {
     min: 1,
     max: 5,
@@ -140,7 +140,7 @@ const background = () => {
         "s";
       document.getElementById("background")!.append(star);
     }
-  }, 100);
+  }, 150);
 };
 
 const scroll = (value: number) => {

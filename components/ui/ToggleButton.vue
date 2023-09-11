@@ -11,14 +11,25 @@
     ></label>
     <span
       class="absolute top-2.5 pointer-events-none text-sm w-1/2 text-center text-primary peer-checked:text-[white]"
-    ></span>
+      >{{ on }}</span
+    >
     <span
       class="absolute top-2.5 right-0 pointer-events-none text-sm w-1/2 text-center text-white peer-checked:text-primary"
-    ></span>
+      >{{ off }}</span
+    >
   </div>
   <label class="switch">
-    <input type="checkbox" @click="$emit('switch')" />
-    <span class="slider"></span>
+    <input type="checkbox" @click="$emit('switch')" class="peer" />
+    <span class="slider">
+      <span
+        class="absolute top-2.5 z-10 pointer-events-none text-sm w-1/2 text-center text-primary peer-checked:text-[white]"
+        >{{ on }}</span
+      >
+      <span
+        class="absolute top-2.5 z-10 right-0 pointer-events-none text-sm w-1/2 text-center text-primary"
+        >{{ off }}</span
+      >
+    </span>
   </label>
 </template>
 
@@ -32,9 +43,9 @@ defineProps({
 
 <style>
 .switch {
-  --button-width: 60px;
-  --button-height: 30px;
-  --toggle-diameter: 25px;
+  --button-width: 80px;
+  --button-height: 40px;
+  --toggle-diameter: 30px;
   --button-toggle-offset: calc(
     (var(--button-height) - var(--toggle-diameter)) / 2
   );
@@ -67,10 +78,6 @@ defineProps({
   box-shadow: var(--toggle-shadow-offset) 0
     calc(var(--toggle-shadow-offset) * 4) rgba(0, 0, 0, 0.1);
   transition: 0.3s all ease-in-out;
-}
-
-.switch input[type="checkbox"]:checked + .slider {
-  background-color: var(--color-green);
 }
 
 .switch input[type="checkbox"]:checked + .slider::after {
