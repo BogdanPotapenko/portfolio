@@ -35,21 +35,21 @@
         <button
           class="link hover:text-[#4b0082]"
           :disabled="scrolling"
-          @click="scroll(skills.getBoundingClientRect().y)"
+          @click="scroll(skills.getBoundingClientRect().y - 60)"
         >
           {{ $t("navbar.links.skills") }}
         </button>
         <button
           class="link hover:text-[#4b0082]"
           :disabled="scrolling"
-          @click="scroll(portfolio.getBoundingClientRect().y)"
+          @click="scroll(portfolio.getBoundingClientRect().y - 60)"
         >
           {{ $t("navbar.links.portfolio") }}
         </button>
         <button
           class="link hover:text-[#4b0082]"
           :disabled="scrolling"
-          @click="scroll(contacts.getBoundingClientRect().y)"
+          @click="scroll(contacts.getBoundingClientRect().y - 60)"
         >
           {{ $t("navbar.links.contacts") }}
         </button>
