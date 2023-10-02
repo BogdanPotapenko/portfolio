@@ -6,26 +6,6 @@
         class="w-[calc(300px+(850_-_300)*((100vw-390px)/(1024_-_390)))] max-w-[850px] mx-auto text-white text-center"
       >
         <div class="relative w-full h-0 pb-[100%] flex justify-center">
-          <div class="w-full pt-[50%] flex items-center">
-            <button
-              class="mx-auto w-[calc(55px+(100_-_55)*((100vw-390px)/(1024_-_390)))] max-w-[100px] h-[calc(55px+(100_-_55)*((100vw-390px)/(1024_-_390)))] max-h-[100px] bg-primary rounded-full text-sm sm:text-base"
-              style="
-                background: radial-gradient(
-                  circle at 65% 15%,
-                  #9370db 3%,
-                  #3c004b 60%,
-                  black 100%
-                );
-              "
-              @click="degree = !degree"
-            >
-              {{
-                degree
-                  ? $t(`sectionSkills.buttonTrue`)
-                  : $t(`sectionSkills.buttonFalse`)
-              }}
-            </button>
-          </div>
           <div
             v-for="(skill, index) in skills"
             :key="index"

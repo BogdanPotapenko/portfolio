@@ -8,19 +8,9 @@ module.exports = {
       gray: "#C0C0C0",
     },
     extend: {
-      width: {
-        "7.5": "30px",
-        "15": "60px",
-      },
-      height: {
-        "7.5": "30px",
-        "15": "60px",
-      },
-      padding: {
-        "7.5": "30px",
-        "15": "60px",
-      },
       spacing: {
+        "7.5": "30px",
+        "15": "60px",
         "5px": "5px",
       },
     },

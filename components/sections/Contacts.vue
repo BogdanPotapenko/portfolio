@@ -59,17 +59,27 @@
         </div>
         <div class="text-xs sm:text-base">
           <nuxt-link
+            class="hover:[text-shadow:0.3px_0.3px_0.7px_#ff00de] hover:text-[#4b0082]"
             to="https://www.linkedin.com/in/богдан-потапенко-b74860221"
             target="blank"
             >LinkedIn</nuxt-link
           >,
-          <nuxt-link to="https://t.me/bogdan_potapenko" target="blank"
+          <nuxt-link
+            class="hover:[text-shadow:0.3px_0.3px_0.7px_#ff00de] hover:text-[#4b0082]"
+            to="https://t.me/bogdan_potapenko"
+            target="blank"
             >Telegram</nuxt-link
           >,
-          <nuxt-link to="https://www.instagram.com/bohdanchik_" target="blank"
+          <nuxt-link
+            class="hover:[text-shadow:0.3px_0.3px_0.7px_#ff00de] hover:text-[#4b0082]"
+            to="https://www.instagram.com/bohdanchik_"
+            target="blank"
             >Instagram</nuxt-link
           >,
-          <nuxt-link to="https://github.com/BogdanPotapenko" target="blank"
+          <nuxt-link
+            class="hover:[text-shadow:0.3px_0.3px_0.7px_#ff00de] hover:text-[#4b0082]"
+            to="https://github.com/BogdanPotapenko"
+            target="blank"
             >GitHub</nuxt-link
           >
         </div>

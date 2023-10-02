@@ -1,5 +1,10 @@
 <template>
-  <header class="w-full h-15 text-white fixed z-10 mx-auto bg-black">
+  <header
+    class="w-full h-15 text-white fixed z-10 mx-auto"
+    style="
+      background: radial-gradient(ellipse at bottom, #08192a -100%, black 100%);
+    "
+  >
     <div
       @click="activeMenu = !activeMenu"
       class="md:hidden fixed z-20 right-5 top-5 py-2.5 w-7.5"
@@ -15,7 +20,7 @@
     </div>
 
     <div
-      class="text-4xl md:text-2xl max-w-6xl h-screen relative max-md:overflow-auto md:h-15 mx-auto flex flex-col md:flex-row items-center justify-between md:px-15 bg-[inherit]"
+      class="text-4xl md:text-[22px] max-w-6xl h-screen relative max-md:overflow-auto md:h-15 mx-auto flex flex-col md:flex-row items-center justify-between md:px-15 max-md:bg-black"
       :class="
         activeMenu
           ? 'top-0 duration-500 md:duration-0 '
@@ -26,28 +31,28 @@
         class="flex gap-5 flex-col md:flex-row items-center md:justify-between py-24 md:py-0"
       >
         <button
-          class="link hover:text-[#4b0082]"
+          class="max-md:[text-shadow:1px_1px_2px_#ff00de] max-md:text-[#4b0082] hover:[text-shadow:1px_1px_2px_#ff00de] hover:text-[#4b0082]"
           :disabled="scrolling"
           @click="scroll(about.getBoundingClientRect().y - 60)"
         >
           {{ $t("navbar.links.about") }}
         </button>
         <button
-          class="link hover:text-[#4b0082]"
+          class="max-md:[text-shadow:1px_1px_2px_#ff00de] max-md:text-[#4b0082] hover:[text-shadow:1px_1px_2px_#ff00de] hover:text-[#4b0082]"
           :disabled="scrolling"
           @click="scroll(skills.getBoundingClientRect().y - 60)"
         >
           {{ $t("navbar.links.skills") }}
         </button>
         <button
-          class="link hover:text-[#4b0082]"
+          class="max-md:[text-shadow:1px_1px_2px_#ff00de] max-md:text-[#4b0082] hover:[text-shadow:1px_1px_2px_#ff00de] hover:text-[#4b0082]"
           :disabled="scrolling"
           @click="scroll(portfolio.getBoundingClientRect().y - 60)"
         >
           {{ $t("navbar.links.portfolio") }}
         </button>
         <button
-          class="link hover:text-[#4b0082]"
+          class="max-md:[text-shadow:1px_1px_2px_#ff00de] max-md:text-[#4b0082] hover:[text-shadow:1px_1px_2px_#ff00de] hover:text-[#4b0082]"
           :disabled="scrolling"
           @click="scroll(contacts.getBoundingClientRect().y - 60)"
         >
@@ -57,7 +62,7 @@
       <div class="flex gap-3 flex-col md:flex-row mb-24 md:mb-0">
         <toggle-button
           @switch="
-            params.amount ? (params.amount = 0) : (params.amount = 100),
+            params.amount ? (params.amount = 0) : (params.amount = 150),
               background()
           "
           label="star"
@@ -78,15 +83,15 @@
 const { locale } = useI18n();
 
 const params = ref({
-  amount: 100,
+  amount: 150,
   size: {
-    min: 1,
-    max: 5,
-    giant: 7,
+    min: 0.5,
+    max: 1.5,
+    giant: 2,
   },
   duration: {
     min: 2,
-    max: 15,
+    max: 10,
   },
 });
 
@@ -100,6 +105,7 @@ const activeMenu = ref(false);
 
 onMounted(() => {
   background();
+  move();
   about.value = document.getElementById("about");
   skills.value = document.getElementById("skills");
   portfolio.value = document.getElementById("portfolio");
@@ -110,37 +116,45 @@ const randomBetween = (a: number, b: number) => {
   return a + Math.random() * (b - a);
 };
 const background = () => {
+  document.querySelectorAll<HTMLDivElement>(".star").forEach((el) => {
+    el.remove();
+  });
+  for (let i = 0; i < params.value.amount; i++) {
+    const star = document.createElement("span");
+    star.classList.add("star");
+    const size =
+      Math.round(Math.random() * 10) === 0
+        ? params.value.size.giant
+        : randomBetween(params.value.size.min, params.value.size.max);
+    star.style.width = size + "px";
+    star.style.height = size + "px";
+    star.style.position = "absolute";
+    star.style.left = randomBetween(0, 100) + "%";
+    star.style.top = randomBetween(0, 100) + "%";
+    star.style.background =
+      "radial-gradient(ellipse at center,#dce5ed 2%,#6c89a4 100%)";
+    star.style.borderRadius = "100%";
+    star.style.boxShadow = "0 0 " + size + "px " + size / 3 + "px #dce5ed";
+    star.style.transform = "translate3d(0, 0, 200px)";
+    star.style.animation = "shine infinite alternate";
+    star.style.animationDuration =
+      randomBetween(params.value.duration.min, params.value.duration.max) + "s";
+    document.getElementById("background")!.append(star);
+  }
+};
+const move = () => {
+  const move_star =
+    document.querySelectorAll<HTMLDivElement>(".star")[
+      Math.floor(randomBetween(0, params.value.amount))
+    ];
+  move_star.style.animation = "move linear";
+  move_star.style.animationDuration = randomBetween(0.5, 1) + "s";
   setTimeout(() => {
-    document.querySelectorAll<HTMLDivElement>(".star").forEach((el) => {
-      el.remove();
-    });
-    for (let i = 0; i < params.value.amount; i++) {
-      const star = document.createElement("span");
-      star.classList.add("star");
-      const size =
-        Math.round(Math.random() * 10) === 0
-          ? params.value.size.giant
-          : randomBetween(params.value.size.min, params.value.size.max);
-      star.style.width = size + "px";
-      star.style.height = size + "px";
-      star.style.position = "absolute";
-      star.style.left = randomBetween(0, 100) + "%";
-      star.style.top = randomBetween(0, 100) + "%";
-      star.style.background =
-        "radial-gradient(ellipse at center,#9370db 2%,#053f76 100%)";
-      star.style.borderRadius = "100%";
-      star.style.boxShadow = "0 0 " + size + "px " + size / 2 + "px #043668";
-      star.style.transform = "translate3d(0, 0, 200px)";
-      star.style.animation =
-        Math.round(Math.random() * 5) === 0
-          ? "move linear infinite"
-          : "shine infinite alternate";
-      star.style.animationDuration =
-        randomBetween(params.value.duration.min, params.value.duration.max) +
-        "s";
-      document.getElementById("background")!.append(star);
-    }
-  }, 150);
+    move_star.style.animation = "shine infinite alternate";
+    move_star.style.animationDuration =
+      randomBetween(params.value.duration.min, params.value.duration.max) + "s";
+    move();
+  }, Math.floor(randomBetween(3, 10)) * 1000);
 };
 
 const scroll = (value: number) => {
@@ -206,15 +220,13 @@ watch(activeMenu, () => {
 @keyframes move {
   0% {
     transform: rotate(315deg) translateX(0);
-    opacity: 1;
-  }
-
-  70% {
+    width: 50px;
+    box-shadow: 10px 0px 1px 0px;
     opacity: 1;
   }
 
   100% {
-    transform: rotate(315deg) translateX(-1000px);
+    transform: rotate(315deg) translateX(-200px);
     opacity: 0;
   }
 }

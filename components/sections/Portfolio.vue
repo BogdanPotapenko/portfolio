@@ -125,9 +125,11 @@ watch(deg, () => {
     }, 700);
   });
   const anim = document.querySelector<HTMLDivElement>(".anim");
-  anim!.classList.add("animate-[scale_0.7s_ease-out]");
+  anim!.classList.add("animate-[scale_0.7s_cubic-bezier(0.6,0.4,0.2,0.4)]");
   setTimeout(() => {
-    anim!.classList.remove("animate-[scale_0.7s_ease-out]");
+    anim!.classList.remove(
+      "animate-[scale_0.7s_cubic-bezier(0.6,0.4,0.2,0.4)]"
+    );
   }, 700);
 });
 </script>

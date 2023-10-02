@@ -1,12 +1,14 @@
 <template>
   <section id="about" class="pt-28 pb-12 md:py-12 px-15">
     <div
-      @click="back = !back"
-      class="max-w-5xl h-[500px] mx-auto"
-      style="perspective: 1000px"
+      @click="reverseClick"
+      @mouseenter="reverseMouse"
+      @mouseleave="reverseMouse"
+      class="group max-w-5xl h-[500px] mx-auto"
+      style="perspective: 1700px"
     >
       <div
-        class="flip-card relative w-full h-full text-center duration-700"
+        class="relative w-full h-full text-center duration-1000 lg:group-hover:[transform:rotateY(180deg)]"
         style="transform-style: preserve-3d"
         :style="back ? 'transform: rotateY(180deg)' : ''"
       >
@@ -26,7 +28,7 @@
           style="transform: rotateY(180deg); backface-visibility: hidden"
         >
           <div
-            class="max-w-sm flex flex-col gap-y-9 justify-center items-center text-white tracking-[1px]"
+            class="max-w-sm flex flex-col gap-y-9 justify-center items-center text-secondary tracking-[1px]"
           >
             <p>
               {{ $t("sectionAbout.textFirst") }}
@@ -45,4 +47,16 @@
 </template>
 <script setup lang="ts">
 const back = ref(false);
+
+const reverseClick = () => {
+  if (window.innerWidth <= 1024) {
+    back.value = !back.value;
+  }
+};
+const reverseMouse = () => {
+  if (window.innerWidth >= 1024 && back.value) {
+    back.value = false;
+  } else if (window.innerWidth >= 1024 && !back.value) {
+  }
+};
 </script>
