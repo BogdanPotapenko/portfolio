@@ -31,30 +31,30 @@
         class="flex gap-5 flex-col md:flex-row items-center md:justify-between py-24 md:py-0"
       >
         <button
-          class="max-md:[text-shadow:1px_1px_2px_#ff00de] max-md:text-[#4b0082] hover:[text-shadow:1px_1px_2px_#ff00de] hover:text-[#4b0082]"
+          class="hover:[text-shadow:1px_1px_2px_#ff00de] hover:text-[#4b0082]"
           :disabled="scrolling"
           @click="scroll(about.getBoundingClientRect().y - 60)"
         >
           {{ $t("navbar.links.about") }}
         </button>
         <button
-          class="max-md:[text-shadow:1px_1px_2px_#ff00de] max-md:text-[#4b0082] hover:[text-shadow:1px_1px_2px_#ff00de] hover:text-[#4b0082]"
+          class="hover:[text-shadow:1px_1px_2px_#ff00de] hover:text-[#4b0082]"
           :disabled="scrolling"
           @click="scroll(skills.getBoundingClientRect().y - 60)"
         >
           {{ $t("navbar.links.skills") }}
         </button>
         <button
-          class="max-md:[text-shadow:1px_1px_2px_#ff00de] max-md:text-[#4b0082] hover:[text-shadow:1px_1px_2px_#ff00de] hover:text-[#4b0082]"
+          class="hover:[text-shadow:1px_1px_2px_#ff00de] hover:text-[#4b0082]"
           :disabled="scrolling"
           @click="scroll(portfolio.getBoundingClientRect().y - 60)"
         >
           {{ $t("navbar.links.portfolio") }}
         </button>
         <button
-          class="max-md:[text-shadow:1px_1px_2px_#ff00de] max-md:text-[#4b0082] hover:[text-shadow:1px_1px_2px_#ff00de] hover:text-[#4b0082]"
+          class="hover:[text-shadow:1px_1px_2px_#ff00de] hover:text-[#4b0082]"
           :disabled="scrolling"
-          @click="scroll(contacts.getBoundingClientRect().y - 60)"
+          @click="scroll(contacts.getBoundingClientRect().bottom - height)"
         >
           {{ $t("navbar.links.contacts") }}
         </button>
@@ -99,6 +99,7 @@ const about = ref();
 const skills = ref();
 const portfolio = ref();
 const contacts = ref();
+const height = ref();
 
 const scrolling = ref(false);
 const activeMenu = ref(false);
@@ -110,6 +111,7 @@ onMounted(() => {
   skills.value = document.getElementById("skills");
   portfolio.value = document.getElementById("portfolio");
   contacts.value = document.getElementById("contacts");
+  height.value = window.innerHeight;
 });
 
 const randomBetween = (a: number, b: number) => {
