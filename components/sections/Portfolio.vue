@@ -6,27 +6,26 @@
         class="flex gap-x-2.5 sm:gap-x-3 md:gap-x-4 items-center overflow-hidden"
       >
         <button
-          @click="deg -= 360 / portfolios.length"
+          @click="deg -= 360 / amount"
           class="btn w-9 h-14 bg-[url('/portfolio/left.svg')] bg-center bg-no-repeat"
         ></button>
         <button
-          @click="deg += 360 / portfolios.length"
+          @click="deg += 360 / amount"
           class="btn w-9 h-14 bg-[url('/portfolio/right.svg')] bg-center bg-no-repeat order-last"
         ></button>
 
-        <div class="anim relative w-full h-0 pb-[150%] sm:pb-[98%] lg:pb-[60%]">
+        <div
+          id="slider"
+          class="relative w-full h-0 pb-[150%] sm:pb-[98%] lg:pb-[60%]"
+        >
           <div
             v-for="(portfolio, index) in portfolios"
             :key="index"
-            class="absolute duration-700 top-0 left-0 w-full h-full flex justify-center items-center bg-primary rounded-xl p-3 pb-6 ease-linear"
+            class="absolute duration-1000 top-0 left-0 w-full h-full flex justify-center items-center bg-primary rounded-xl p-3 pb-6 ease-linear"
             :style="` 
               transform: rotateY(${
-                (360 / portfolios.length) * index + deg
-              }deg) ${
-              translate < 1024
-                ? 'translate3d(0,0,calc(73px + (233 - 73) * ((100vw - 390px) / (1024 - 390))))'
-                : 'translate3d(0,0,233px)'
-            };
+                (360 / amount) * index + deg
+              }deg) translate3d(0,0,calc(-1px + ${translate}px /  2)) ;
               backface-visibility: hidden;`"
           >
             <nuxt-link
@@ -69,31 +68,33 @@
 <script setup lang="ts">
 const portfolios = ref([
   {
-    id: 0,
+    id: 1,
     img: "/rickAndMorty",
     link: "https://bogdanpotapenko.github.io/rick-and-morty",
   },
-  { id: 1, img: "/narkology", link: "http://narkolog.kharkov.ua" },
   {
     id: 2,
     img: "/addUser",
     link: "https://bogdanpotapenko.github.io/add-user",
   },
+  { id: 3, img: "/narkology", link: "http://narkolog.kharkov.ua" },
+  {
+    id: 4,
+    img: "/weather",
+    link: "https://bogdanpotapenko.github.io/weather",
+  },
 ]);
+
+const amount = portfolios.value.length;
 
 const deg = ref(0);
 const translate = ref(0);
 
 onMounted(() => {
+  translate.value = document.getElementById("slider")!.clientWidth;
   window.addEventListener("resize", function () {
-    if (document.body.clientWidth > 1024 && translate.value < 1024) {
-      translate.value = document.body.clientWidth;
-    } else if (document.body.clientWidth < 1024 && translate.value > 1024) {
-      translate.value = document.body.clientWidth;
-    }
+    translate.value = document.getElementById("slider")!.clientWidth;
   });
-
-  translate.value = document.body.clientWidth;
 
   document.querySelectorAll<HTMLDivElement>(".dot")[0].style.background =
     "#c0c0c0";
@@ -103,18 +104,13 @@ watch(deg, () => {
   document.querySelectorAll<HTMLDivElement>(".dot").forEach((el) => {
     el.style.background = "black";
 
-    if (
-      (deg.value / (360 / portfolios.value.length)) % portfolios.value.length >=
-      0
-    ) {
+    if ((deg.value / (360 / amount)) % amount >= 0) {
       document.querySelectorAll<HTMLDivElement>(".dot")[
-        (deg.value / (360 / portfolios.value.length)) % portfolios.value.length
+        (deg.value / (360 / amount)) % amount
       ].style.background = "#c0c0c0";
     } else {
       document.querySelectorAll<HTMLDivElement>(".dot")[
-        ((deg.value / (360 / portfolios.value.length)) %
-          portfolios.value.length) +
-          portfolios.value.length
+        ((deg.value / (360 / amount)) % amount) + amount
       ].style.background = "#c0c0c0";
     }
   });
@@ -122,15 +118,15 @@ watch(deg, () => {
     el.disabled = true;
     setTimeout(() => {
       el.disabled = false;
-    }, 700);
+    }, 1000);
   });
-  const anim = document.querySelector<HTMLDivElement>(".anim");
-  anim!.classList.add("animate-[scale_0.7s_cubic-bezier(0.6,0.4,0.2,0.4)]");
+  const slider = document.getElementById("slider");
+  slider!.classList.add("animate-[scale_1s_cubic-bezier(0.2,0.4,0.3,0.2)]");
   setTimeout(() => {
-    anim!.classList.remove(
-      "animate-[scale_0.7s_cubic-bezier(0.6,0.4,0.2,0.4)]"
+    slider!.classList.remove(
+      "animate-[scale_1s_cubic-bezier(0.2,0.4,0.3,0.2)]"
     );
-  }, 700);
+  }, 1000);
 });
 </script>
 
@@ -140,7 +136,7 @@ watch(deg, () => {
     transform: scale(1);
   }
   50% {
-    transform: scale(0.65);
+    transform: scale(0.55);
   }
   100% {
     transform: scale(1);

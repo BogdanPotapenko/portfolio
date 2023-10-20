@@ -1,13 +1,13 @@
 <template>
   <header
-    class="w-full h-15 text-white fixed z-10 mx-auto"
+    class="w-full h-15 text-white fixed z-20 mx-auto"
     style="
       background: radial-gradient(ellipse at bottom, #08192a -100%, black 100%);
     "
   >
     <div
       @click="activeMenu = !activeMenu"
-      class="md:hidden fixed z-20 right-5 top-5 py-2.5 w-7.5"
+      class="md:hidden fixed z-30 right-5 top-5 py-2.5 w-7.5"
     >
       <div
         class="w-7.5 h-1 duration-1000 before:duration-500 after:duration-500 before:absolute before:w-7.5 before:h-1 before:bg-white before:left-0 after:content-[''] after:absolute after:w-7.5 after:h-1 after:bg-white after:left-0"
@@ -62,7 +62,7 @@
       <div class="flex gap-3 flex-col md:flex-row mb-24 md:mb-0">
         <toggle-button
           @switch="
-            params.amount ? (params.amount = 0) : (params.amount = 150),
+            params.amount ? (params.amount = 0) : (params.amount = 100),
               background()
           "
           label="star"
@@ -83,7 +83,7 @@
 const { locale } = useI18n();
 
 const params = ref({
-  amount: 150,
+  amount: 100,
   size: {
     min: 0.5,
     max: 1.5,

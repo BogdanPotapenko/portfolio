@@ -44,12 +44,12 @@
 </template>
 <script setup land="ts">
 const skills = ref([
-  { id: 0, name: "Vue", img: "/Vue.svg" },
-  { id: 1, name: "Git", img: "/GitHub.svg" },
-  { id: 2, name: "VS Code", img: "/VSCode.svg" },
+  { id: 1, name: "VS Code", img: "/VSCode.svg" },
+  { id: 2, name: "Git", img: "/GitHub.svg" },
   { id: 3, name: "Html", img: "/Html.svg" },
-  { id: 4, name: "JS", img: "/JavaScript.svg" },
-  { id: 5, name: "Css", img: "/Css.svg" },
+  { id: 4, name: "Css", img: "/Css.svg" },
+  { id: 5, name: "JS", img: "/JavaScript.svg" },
+  { id: 6, name: "Vue", img: "/Vue.svg" },
 ]);
 
 const deg = ref(360 / skills.value.length);
