@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-full bg-black">
+  <div class="min-h-full">
     <background />
     <navbar />
     <main class="md:pt-15 relative z-10">
