@@ -60,15 +60,7 @@
         </button>
       </nav>
       <div class="flex gap-3 flex-col md:flex-row mb-24 md:mb-0">
-        <toggle-button
-          @switch="
-            params.amount ? (params.amount = 0) : (params.amount = 100),
-              background()
-          "
-          label="star"
-          on="ON"
-          off="OFF"
-        />
+        <toggle-button @switch="modalClose()" label="star" on="ON" off="OFF" />
         <toggle-button
           @switch="locale === 'en' ? (locale = 'uk') : (locale = 'en')"
           label="locale"
@@ -80,20 +72,11 @@
   </header>
 </template>
 <script setup lang="ts">
-const { locale } = useI18n();
+const emit = defineEmits<{
+  (e: "close", value?: string): void;
+}>();
 
-const params = ref({
-  amount: 100,
-  size: {
-    min: 0.5,
-    max: 1.5,
-    giant: 2,
-  },
-  duration: {
-    min: 2,
-    max: 10,
-  },
-});
+const { locale } = useI18n();
 
 const about = ref();
 const skills = ref();
@@ -104,60 +87,17 @@ const height = ref();
 const scrolling = ref(false);
 const activeMenu = ref(false);
 
+const modalClose = () => {
+  emit("close");
+};
+
 onMounted(() => {
-  background();
-  move();
   about.value = document.getElementById("about");
   skills.value = document.getElementById("skills");
   portfolio.value = document.getElementById("portfolio");
   contacts.value = document.getElementById("contacts");
   height.value = window.innerHeight;
 });
-
-const randomBetween = (a: number, b: number) => {
-  return a + Math.random() * (b - a);
-};
-const background = () => {
-  document.querySelectorAll<HTMLDivElement>(".star").forEach((el) => {
-    el.remove();
-  });
-  for (let i = 0; i < params.value.amount; i++) {
-    const star = document.createElement("span");
-    star.classList.add("star");
-    const size =
-      Math.round(Math.random() * 10) === 0
-        ? params.value.size.giant
-        : randomBetween(params.value.size.min, params.value.size.max);
-    star.style.width = size + "px";
-    star.style.height = size + "px";
-    star.style.position = "absolute";
-    star.style.left = randomBetween(0, 100) + "%";
-    star.style.top = randomBetween(0, 100) + "%";
-    star.style.background =
-      "radial-gradient(ellipse at center,#dce5ed 2%,#6c89a4 100%)";
-    star.style.borderRadius = "100%";
-    star.style.boxShadow = "0 0 " + size + "px " + size / 3 + "px #dce5ed";
-    star.style.transform = "translate3d(0, 0, 200px)";
-    star.style.animation = "shine infinite alternate";
-    star.style.animationDuration =
-      randomBetween(params.value.duration.min, params.value.duration.max) + "s";
-    document.getElementById("background")!.append(star);
-  }
-};
-const move = () => {
-  const move_star =
-    document.querySelectorAll<HTMLDivElement>(".star")[
-      Math.floor(randomBetween(0, params.value.amount))
-    ];
-  move_star.style.animation = "move linear";
-  move_star.style.animationDuration = randomBetween(0.5, 1) + "s";
-  setTimeout(() => {
-    move_star.style.animation = "shine infinite alternate";
-    move_star.style.animationDuration =
-      randomBetween(params.value.duration.min, params.value.duration.max) + "s";
-    move();
-  }, Math.floor(randomBetween(3, 10)) * 1000);
-};
 
 const scroll = (value: number) => {
   activeMenu.value = false;

@@ -7,15 +7,17 @@
       >
         <button
           @click="deg -= 360 / amount"
+          :disabled="buttonDisabled"
           class="btn w-9 h-14 bg-[url('/portfolio/left.svg')] bg-center bg-no-repeat"
         ></button>
         <button
           @click="deg += 360 / amount"
+          :disabled="buttonDisabled"
           class="btn w-9 h-14 bg-[url('/portfolio/right.svg')] bg-center bg-no-repeat order-last"
         ></button>
 
         <div
-          id="slider"
+          ref="slider"
           class="relative w-full h-0 pb-[150%] sm:pb-[98%] lg:pb-[60%]"
         >
           <div
@@ -55,10 +57,13 @@
           <div
             class="absolute flex gap-x-1 left-1/2 -translate-x-1/2 bottom-1.5 first:bg-white"
           >
-            <div
-              v-for="portfolio of portfolios"
-              class="dot cursor-pointer w-2 h-2 rounded-full bg-black duration-300"
-            ></div>
+            <button
+              ref="points"
+              v-for="point of amount"
+              @click="clickPoint(point)"
+              :disabled="buttonDisabled"
+              class="w-2 h-2 rounded-full bg-black first:bg-[#c0c0c0] duration-300"
+            ></button>
           </div>
         </div>
       </div>
@@ -85,48 +90,45 @@ const portfolios = ref([
   },
 ]);
 
-const amount = portfolios.value.length;
+const slider = ref();
+const points = ref();
 
 const deg = ref(0);
 const translate = ref(0);
 
-onMounted(() => {
-  translate.value = document.getElementById("slider")!.clientWidth;
-  window.addEventListener("resize", function () {
-    translate.value = document.getElementById("slider")!.clientWidth;
-  });
+const amount = portfolios.value.length;
+const currentPoint = computed(() => (deg.value / (360 / amount)) % amount);
 
-  document.querySelectorAll<HTMLDivElement>(".dot")[0].style.background =
-    "#c0c0c0";
-});
+const buttonDisabled = ref(false);
+
+const clickPoint = (point: number) => {
+  deg.value +=
+    (360 / amount) * (point - 1) - (360 / amount) * currentPoint.value;
+};
 
 watch(deg, () => {
-  document.querySelectorAll<HTMLDivElement>(".dot").forEach((el) => {
+  points.value.forEach((el: HTMLElement) => {
     el.style.background = "black";
-
-    if ((deg.value / (360 / amount)) % amount >= 0) {
-      document.querySelectorAll<HTMLDivElement>(".dot")[
-        (deg.value / (360 / amount)) % amount
-      ].style.background = "#c0c0c0";
+    if (currentPoint.value >= 0) {
+      points.value[currentPoint.value].style.background = "#c0c0c0";
     } else {
-      document.querySelectorAll<HTMLDivElement>(".dot")[
-        ((deg.value / (360 / amount)) % amount) + amount
-      ].style.background = "#c0c0c0";
+      points.value[currentPoint.value + amount].style.background = "#c0c0c0";
     }
   });
-  document.querySelectorAll<HTMLButtonElement>("button").forEach((el) => {
-    el.disabled = true;
-    setTimeout(() => {
-      el.disabled = false;
-    }, 1000);
-  });
-  const slider = document.getElementById("slider");
-  slider!.classList.add("animate-[scale_1s_cubic-bezier(0.2,0.4,0.3,0.2)]");
+
+  buttonDisabled.value = true;
+  slider.value.classList.add("animate-[scale_1s_linear]");
   setTimeout(() => {
-    slider!.classList.remove(
-      "animate-[scale_1s_cubic-bezier(0.2,0.4,0.3,0.2)]"
-    );
+    buttonDisabled.value = false;
+    slider.value.classList.remove("animate-[scale_1s_linear]");
   }, 1000);
+});
+
+onMounted(() => {
+  translate.value = slider.value?.clientWidth;
+  window.addEventListener("resize", function () {
+    translate.value = slider.value?.clientWidth;
+  });
 });
 </script>
 
@@ -134,12 +136,19 @@ watch(deg, () => {
 @keyframes scale {
   0% {
     transform: scale(1);
+    perspective: none;
   }
-  50% {
-    transform: scale(0.55);
+  10% {
+    transform: scale(0.7);
+    perspective: 15000px;
+  }
+  90% {
+    transform: scale(0.7);
+    perspective: 15000px;
   }
   100% {
     transform: scale(1);
+    perspective: none;
   }
 }
 </style>
