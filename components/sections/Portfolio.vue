@@ -23,7 +23,7 @@
           <div
             v-for="(portfolio, index) in portfolios"
             :key="index"
-            class="absolute duration-1000 top-0 left-0 w-full h-full flex justify-center items-center bg-primary rounded-xl p-3 pb-6 ease-linear"
+            class="absolute duration-700 top-0 left-0 w-full h-full flex justify-center items-center bg-primary rounded-xl p-3 pb-6 ease-linear"
             :style="` 
               transform: rotateY(${
                 (360 / amount) * index + deg
@@ -117,11 +117,11 @@ watch(deg, () => {
   });
 
   buttonDisabled.value = true;
-  slider.value.classList.add("animate-[scale_1s_linear]");
+  slider.value.classList.add("animate-[scale_0.7s_linear]");
   setTimeout(() => {
     buttonDisabled.value = false;
-    slider.value.classList.remove("animate-[scale_1s_linear]");
-  }, 1000);
+    slider.value.classList.remove("animate-[scale_0.7s_linear]");
+  }, 700);
 });
 
 onMounted(() => {
