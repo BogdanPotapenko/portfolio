@@ -56,7 +56,6 @@ const starStyle = () => {
         "s";
       document.getElementById("background")!.append(star);
     });
-    starMove();
   }, 0);
 };
 
@@ -71,6 +70,11 @@ const starMove = () => {
       move_star.style.animationDuration =
         randomBetween(params.value.duration.min, params.value.duration.max) +
         "s";
+
+      starMove();
+    }, Math.floor(randomBetween(3, 10)) * 1000);
+  } else {
+    setTimeout(() => {
       starMove();
     }, Math.floor(randomBetween(3, 10)) * 1000);
   }
@@ -81,7 +85,9 @@ watch(
   () => {
     if (prop.isBackground) {
       params.value.amount = 100;
-      starStyle();
+      setTimeout(() => {
+        starStyle();
+      }, 100);
     } else {
       params.value.amount = 0;
     }
@@ -90,5 +96,6 @@ watch(
 
 onMounted(() => {
   starStyle();
+  starMove();
 });
 </script>
